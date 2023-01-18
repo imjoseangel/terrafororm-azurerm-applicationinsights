@@ -45,6 +45,7 @@ resource "azurerm_application_insights" "main" {
   resource_group_name  = local.resource_group_name
   application_type     = "web"
   daily_data_cap_in_gb = var.daily_data_cap_in_gb
+  sampling_percentage  = var.sampling_percentage
   workspace_id         = azurerm_log_analytics_workspace.main.id
 
   tags = merge({ "ResourceName" = lower(var.name) }, var.tags, )
