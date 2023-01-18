@@ -27,12 +27,11 @@ resource "azurerm_resource_group" "rg" {
 #---------------------------------------------------------
 
 resource "azurerm_log_analytics_workspace" "main" {
-  name                = var.name
+  name                = var.lname
   location            = local.location
   resource_group_name = local.resource_group_name
+  retention_in_days   = var.retention_in_days
   sku                 = "PerGB2018"
-  retention_in_days   = 90
-  daily_quota_gb      = 5
   tags                = merge({ "ResourceName" = lower(var.name) }, var.tags, )
 }
 
@@ -41,11 +40,12 @@ resource "azurerm_log_analytics_workspace" "main" {
 #---------------------------------------------------------
 
 resource "azurerm_application_insights" "main" {
-  name                = var.name
-  location            = local.location
-  resource_group_name = local.resource_group_name
-  application_type    = "web"
-  workspace_id        = azurerm_log_analytics_workspace.main.id
+  name                 = var.name
+  location             = local.location
+  resource_group_name  = local.resource_group_name
+  application_type     = "web"
+  daily_data_cap_in_gb = var.daily_data_cap_in_gb
+  workspace_id         = azurerm_log_analytics_workspace.main.id
 
   tags = merge({ "ResourceName" = lower(var.name) }, var.tags, )
 }
