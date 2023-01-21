@@ -44,6 +44,18 @@ variable "sampling_percentage" {
   type        = number
 }
 
+variable "sku" {
+  description = "(Optional) Specifies the SKU of the Log Analytics Workspace. Possible values are Free, PerNode, Premium, Standard, Standalone, Unlimited, CapacityReservation, and PerGB2018 (new SKU as of 2018-04-03). Defaults to PerGB2018."
+  default     = "PerGB2018"
+  type        = string
+}
+
+variable "daily_quota_gb" {
+  description = "(Optional) The workspace daily quota for ingestion in GB. Defaults to 5"
+  default     = 5
+  type        = number
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)

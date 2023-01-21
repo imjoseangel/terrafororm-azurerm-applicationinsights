@@ -31,7 +31,8 @@ resource "azurerm_log_analytics_workspace" "main" {
   location            = local.location
   resource_group_name = local.resource_group_name
   retention_in_days   = var.retention_in_days
-  sku                 = "PerGB2018"
+  daily_quota_gb      = var.daily_quota_gb
+  sku                 = var.sku
   tags                = merge({ "ResourceName" = lower(var.name) }, var.tags, )
 }
 
