@@ -47,7 +47,7 @@ resource "azurerm_application_insights" "main" {
   application_type     = "web"
   daily_data_cap_in_gb = var.daily_data_cap_in_gb
   sampling_percentage  = var.sampling_percentage
-  disable_ip_masking   = var.disable_ip_masking  
+  disable_ip_masking   = var.disable_ip_masking
   workspace_id         = azurerm_log_analytics_workspace.main.id
 
   tags = merge({ "ResourceName" = lower(var.name) }, var.tags, )
