@@ -61,3 +61,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "disable_ip_masking" {
+  description = "(Optional) By default the real client IP is masked as 0.0.0.0 in the logs. Use this argument to disable masking and log the real client IP. Defaults to true"
+  type        = bool
+  default     = true
+}
